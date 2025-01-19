@@ -1,9 +1,12 @@
 ### Convert an Email into PDF
 
 Create a virtual environment  
-pip install -r requirements.txt  
+-    python -m venv venv  
+-    ./venv/Scripts/activate  
 
-Customize output folder and path to wkhtmltopdf(for pdfkit) in app.py
+pip install -r requirements.txt    
+
+Customize output folder and path to wkhtmltopdf(for pdfkit) in app.py  
 
 Important files- 
 - app.py
