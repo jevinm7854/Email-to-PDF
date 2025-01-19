@@ -4,9 +4,29 @@ import logging
 
 if __name__ == "__main__":
 
-    output_folder = "C:/Emails"
-    skip_email_from_top = 4
-    number_of_emails_to_process = 2
+    output_folder = "D:/Emails"
+    skip_email_from_top = 0
+    number_of_emails_to_process = 100
+    omit_senders = [
+        "Adobe Acrobat" "Asian Paints",
+        "Flipkart",
+        "Goibibo",
+        "Just Dial",
+        "HDFC Bank InstaAlerts",
+        "ICICI Prudential Life Insurance",
+        "ixigo",
+        "LinkedIn",
+        "LinkedIn Job Alerts",
+        "Lodha",
+        "MyGov",
+        "mygate",
+        "Netflix",
+        "Newsletters@yourstory.com",
+        "Pepperfry",
+        "Saraswat Bank",
+        "Shoppers Stop",
+        "Wakefit",
+    ]
 
     path_wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
 
@@ -26,11 +46,15 @@ if __name__ == "__main__":
     # Sets up win32com outlook object and returns the sorted items
     items = email_obj.setup_process_email()
 
+    logger.info("Email processing started...")
+    logger.info("Number of email to process: %s", number_of_emails_to_process)
+
     # skip latest 4 emails and then process the next 2 emails to pdf
     email_obj.process_email(
         items,
         output_folder,
         skip_email_from_top=skip_email_from_top,
+        omit_senders=omit_senders,
         email_count=number_of_emails_to_process,
     )
 

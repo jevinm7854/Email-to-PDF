@@ -9,8 +9,15 @@ def create_output_folder(output_folder):
 
 
 def sanitize_filename(filename):
-    """Replace invalid filename characters with underscores."""
-    return re.sub(r'[<>:"/\\|?*]', "_", filename)
+    """
+    Replace invalid filename characters with underscores.
+    """
+    # Remove or replace unsupported characters
+    filename = re.sub(
+        r'[<>:"/\\|?*\x00-\x1F]', "_", filename
+    )  # Replace invalid characters with '_'
+    filename = re.sub(r"[^\x00-\x7F]+", "_", filename)  # Replace non-ASCII characters
+    return filename.strip()
 
 
 def get_email_date(message):

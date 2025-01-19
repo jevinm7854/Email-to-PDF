@@ -8,9 +8,6 @@ path_wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
 config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 
 
-# pdfkit.from_file("C:\Emails\RA position - URBA.html", "out.pdf", configuration=config)
-
-
 def html_to_pdf(html_content, pdf_file):
     """Convert HTML content to a PDF file."""
     try:
@@ -57,7 +54,7 @@ if message:
         # Sanitize subject for filename
         print(f"message :{ message.SenderName}")
         email_date = get_email_date(message)
-        sender_name= sanitize_filename(message.SenderName or "Unknown")[:18]
+        sender_name = sanitize_filename(message.SenderName or "Unknown")[:18]
         subject = sanitize_filename(message.Subject or "Untitled")[:42]
         filename = f"{email_date}-{sender_name} - {subject}"
         html_filename = os.path.join(output_folder, f"{filename}.html")
