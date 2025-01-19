@@ -3,10 +3,12 @@ from email_process import Email_process
 import logging
 
 if __name__ == "__main__":
-    
-    output_folder = "C:/Emails"
-    path_wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
 
+    output_folder = "C:/Emails"
+    skip_email_from_top = 4
+    number_of_emails_to_process = 2
+
+    path_wkhtmltopdf = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
 
     # Configuration for logger
     logging.basicConfig(
@@ -25,6 +27,11 @@ if __name__ == "__main__":
     items = email_obj.setup_process_email()
 
     # skip latest 4 emails and then process the next 2 emails to pdf
-    email_obj.process_email(items, output_folder, skip_email_from_top=4, email_count=2)  
+    email_obj.process_email(
+        items,
+        output_folder,
+        skip_email_from_top=skip_email_from_top,
+        email_count=number_of_emails_to_process,
+    )
 
     logger.info("Email processing completed. Exited Program successfully.")
